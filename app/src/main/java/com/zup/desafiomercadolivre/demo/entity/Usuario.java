@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,12 +17,16 @@ import java.time.LocalDateTime;
 @Entity
 public class Usuario implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message="Data não pode ser vazio ou nulo")
-    @Future
+    @Past
     private LocalDateTime dataHora;
 
     @Email
@@ -35,14 +36,6 @@ public class Usuario implements Serializable {
     @NotBlank(message="Senha não pode ser vazio ou nulo")
     @Min(value=6)
     private String senha;
-
-//    @Transient
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-//    public String getSenha() {
-//        return bCryptPasswordEncoder.encode(senha);
-//    }
 
     public Usuario(Long id, @NotBlank(message = "Data não pode ser vazio ou nulo") @Future LocalDateTime dataHora, @Email @NotBlank(message = "Email não pode ser vazio ou nulo") String login, @NotBlank(message = "Senha não pode ser vazio ou nulo") @Min(value = 6) String senha) {
         this.id = id;

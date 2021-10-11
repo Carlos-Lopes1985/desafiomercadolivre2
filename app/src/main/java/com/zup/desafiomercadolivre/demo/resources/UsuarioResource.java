@@ -1,7 +1,6 @@
 package com.zup.desafiomercadolivre.demo.resources;
 
 import com.zup.desafiomercadolivre.demo.entity.Usuario;
-import com.zup.desafiomercadolivre.demo.service.CadastroService;
 import com.zup.desafiomercadolivre.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

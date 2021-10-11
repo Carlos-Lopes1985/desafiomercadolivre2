@@ -9,32 +9,28 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class UsuarioService implements CadastroService {
+public class UsuarioService  {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Override
-    public Object cadastrar(Object o) throws Exception{
-        Usuario user = new Usuario();
-        user = (Usuario)o;
-        if(Objects.nonNull(user)){
+    public Usuario cadastrar(Usuario usuario) throws Exception{
 
-            System.out.println("Passou aki " +user);
-            usuarioRepository.save(user);
+        if(Objects.nonNull(usuario)){
+
+            System.out.println("Passou aki " +usuario);
+            usuarioRepository.save(usuario);
         }else{
             throw new Exception("Erro ao salvar usuario");
         }
-        return user;
+        return usuario;
     }
 
-    @Override
-    public Object buscarUmUsuario(Long id) {
+    public Usuario buscarUmUsuario(Long id) {
         return usuarioRepository.findById(id).get();
     }
 
-    @Override
-    public List<Object> listarTodos() {
-        return null;
+    public List<Usuario> listarTodos() {
+        return usuarioRepository.findAll();
     }
 }
